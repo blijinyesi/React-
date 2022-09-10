@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>hello-react</title>
+</head>
+
+<body>
+    <!-- 容器 -->
+    <div id="test"></div>
+
+    <script src="../js2/react.development.js"></script>
+
+    <script src="../js2/react-dom.development.js"></script>
+
+    <script src="../js2/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Login extends React.Component {
+            // 指定状态
+            state = {
+                username: '',
+                password: ''
+            }
+
+            // 保存用户名到状态中方法
+            saveUsername = (event) => {
+                // 直接赋值
+                const username = event.target.value
+                this.setState({ username })
+            }
+
+            // 保存密码到状态中方法
+            savePassword = (event) => {
+                // 结构赋值
+                const { value } = event.target
+                this.setState({ password: value })
+            }
+
+            //获取表单用户信息的方法
+            handleSubmit = (event) => {
+                // 阻止表单默认提交
+                event.preventDefault()
+                const { username, password } = this.state
+                // 输入的是值，取的也是值
+                console.log(`你输入的用户名是${username},你输入的密码是${password}`)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            用户名:
+                            <input
+                                type="text"
+                                name="username"
+                                onChange={this.saveUsername}
+                            />
+                            密码:
+                            <input
+                                type="password"
+                                name="password"
+                                onChange={this.savePassword}
+                            />
+                            <button>登录</button>
+                        </form>
+                    </div>
+                )
+            }
+        }
+        //    渲染
+        ReactDOM.render(<Login />, document.getElementById('test'))
+    </script>
+</body>
+
+</html>
