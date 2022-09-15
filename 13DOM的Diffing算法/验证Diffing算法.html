@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello-react</title>
+</head>
+
+<body>
+
+    <!-- 容器 -->
+
+    <div id="test"></div>
+
+    <script src="../js2/react.development.js"></script>
+
+    <script src="../js2/react-dom.development.js"></script>
+
+    <script src="../js2/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 创建组件
+        class Time extends React.Component {
+
+            // 初始化状态
+            state = { date: new Date() }
+
+            // 组件更新完毕的钩子函数
+            componentDidMount() {
+                setInterval(() => {
+                    this.setState({
+                        date: new Date()
+                    })
+                }, 1000)
+            }
+
+            // 渲染组件构造函数
+            render() {
+                return (
+                    <div>
+                        <h1>hello</h1>
+                        <input type="text" />
+                        <span>现在是:{this.state.date.toTimeString()}</span>
+                    </div>
+                )
+            }
+
+        }
+
+        // 渲染组件到页面
+        ReactDOM.render(<Time />, document.getElementById("test"))
+
+    </script>
+
+</body>
+
+</html>
